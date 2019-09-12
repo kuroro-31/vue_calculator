@@ -1,7 +1,7 @@
 {
     "name": "vue_calculator",
     "version": "1.0.0",
-    "description": "monthly note",
+    "description": "vue_calculator",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,6 +35,6 @@
     },
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/Shun-ichiroTanaka/vue_calculator"
     }
 }
