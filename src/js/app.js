@@ -1,3 +1,16 @@
+// String.prototype.replace()は、文字列を置換するメソッド
+// つまり++、--など演算するときの記号が被った場合+,-と一つのものとして判断する処理
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+
+		// 「split()メソッド」と「join()メソッド」で置換を実現
+		// 例えば、「2017/07/10」という日付を「2017-07-10」に変更したいとしましょう。
+		// var str = '2017/07/10';
+		// var result = str.split('/').join('-');
+		// console.log(result);
+    return target.split(search).join(replacement);
+};
+
 new Vue({
 	el: '#app',
 	data: {
@@ -6,18 +19,18 @@ new Vue({
 		calculation:'',
 		tempResult:'',
 	},
-	// mounted() {
-	// 	let btns = document.querySelectorAll('.btn')
-	// 	for (btn of btns) {
-	// 		btn.addEventListener('click',function() {
-	// 			this.classList.add('animate')
-	// 			this.classList.add('resetappearanim')
-	// 		})
-	// 		btn.addEventListener('animationend',function() {
-	// 			this.classList.remove('animate')
-	// 		})
-	// 	}
-	// },
+	mounted() {
+		let btns = document.querySelectorAll('.btn')
+		for (btn of btns) {
+			btn.addEventListener('click',function() {
+				this.classList.add('animate')
+				this.classList.add('resetappearanim')
+			})
+			btn.addEventListener('animationend',function() {
+				this.classList.remove('animate')
+			})
+		}
+	},
 	methods: {
 		append(value) {
 			this.calculation += value.toString()
