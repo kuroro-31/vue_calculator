@@ -1,0 +1,448 @@
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: #f3f3f3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#app {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  font-family: "Raleway", sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+}
+#app #calculator {
+  width: 300px;
+  height: 540px;
+  margin: 10px;
+  margin: auto;
+  color: rgb(255, 255, 255);
+  background: #3f3f3f;
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);
+  border-radius: 8px;
+          animation: 1s bounceIn;
+          animation-fill-mode: forwards;
+  opacity: 0;
+
+  -webkit-animation: 1s bounceIn;
+  -webkit-animation-fill-mode: forwards;
+}
+#app #calculator .screen-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 38%;
+  text-align: right;
+}
+#app #calculator .screen-container .calculation,
+#app #calculator .screen-container .result {
+  width: 100%;
+  height: 50%;
+  padding-right: 15px;
+}
+#app #calculator .screen-container .result {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: #ff6776;
+}
+#app #calculator .screen-container .result .number {
+  font-size: 50px;
+  font-weight: 800;
+}
+#app #calculator .btn-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 62%;
+}
+#app #calculator .btn-container .oper-container {
+  position: absolute;
+  left: -50px;
+  z-index: 10;
+  width: 50px;
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);
+          animation: 1s bounceIn;
+          animation-delay: .5s;
+          animation-fill-mode: forwards;
+  opacity: 0;
+
+  -webkit-animation: 1s bounceIn;
+  -webkit-animation-delay: .5s;
+  -webkit-animation-fill-mode: forwards;
+}
+#app #calculator .btn-container .oper-container .btn {
+  position: static;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  color: #ff6776;
+  background: #fff;
+  cursor: pointer;
+}
+#app #calculator .btn-container .oper-container .btn .number {
+  margin: auto;
+}
+#app #calculator .btn-container .oper-container .btn#clear.animate {
+          animation: fade .12s ease-in-out;
+
+  -webkit-animation: fade .12s ease-in-out;
+  animation-direction: reverse;
+}
+#app #calculator .btn-container .oper-container .btn#clear {
+  display: flex;
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
+  background: #ff6776;
+  box-shadow: 10px 10px 50px rgba(0, 0, 0, .5);
+  border-radius: 8px 0 0 0;
+  cursor: pointer;
+}
+#app #calculator .btn-container .oper-container .btn#clear .number {
+  margin: auto;
+  color: #fff;
+}
+#app #calculator .btn-container .row {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 25%;
+}
+#app #calculator .btn-container .row .btn {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: #1e2022;
+  border: .5px solid #191b1d;
+  cursor: pointer;
+}
+#app #calculator .btn-container .row .btn .number {
+  margin: auto;
+          animation: 1s fadeIn;
+          animation-delay: .5s;
+          animation-fill-mode: forwards;
+  opacity: 0;
+
+  -webkit-animation: 1s fadeIn;
+  -webkit-animation-delay: .5s;
+  -webkit-animation-fill-mode: forwards;
+}
+#app #calculator .btn-container .row .btn:nth-child(1) {
+  border-left: none;
+}
+#app #calculator .btn-container .row .btn:nth-child(3) {
+  border-right: none;
+}
+#app #calculator .btn-container .row .btn.animate {
+          animation: fade .12s ease-in-out;
+
+  -webkit-animation: fade .12s ease-in-out;
+}
+#app #calculator .btn-container .row .btn#result {
+  position: absolute;
+  right: 0;
+  width: 33%;
+  background: #ff6776;
+  border: .5px rgba(0, 0, 0, .0001);
+  border-bottom-right-radius: 8px;
+}
+#app #calculator .btn-container .row .btn#result:not(.resetappearanim) {
+          animation: 1s bounceIn;
+          animation-delay: .5s;
+          animation-fill-mode: forwards;
+  opacity: 0;
+
+  -webkit-animation: 1s bounceIn;
+  -webkit-animation-delay: .5s;
+  -webkit-animation-fill-mode: forwards;
+}
+#app #calculator .btn-container .row .btn#result.animate {
+          animation: fade .12s ease-in-out;
+
+  -webkit-animation: fade .12s ease-in-out;
+  animation-direction: reverse;
+}
+#app #calculator .btn-container .row .btn#dot {
+  border-bottom-left-radius: 8px;
+}
+#app #calculator .btn-container .row:last-child .btn {
+  border-bottom: none;
+}
+#app #calculator .btn-container .btn.operations.animate {
+          animation: fadeThird .12s ease-in-out;
+
+  -webkit-animation: fadeThird .12s ease-in-out;
+  animation-direction: reverse;
+}
+#app #calculator .btn-container .btn.operations.divide {
+  top: calc(25% - 25px);
+  left: calc(33% - 25px);
+}
+#app #calculator .btn-container .btn.operations.multiplication {
+  top: calc(25% - 25px);
+  left: calc(66% - 25px);
+}
+#app #calculator .btn-container .btn.operations.plus {
+  top: calc(50% - 25px);
+  left: calc(66% - 25px);
+}
+#app #calculator .btn-container .btn.operations.less {
+  top: calc(50% - 25px);
+  left: calc(33% - 25px);
+  border-radius: 0 0 8px 0;
+}
+
+@-webkit-keyframes fade {
+  from {
+    background: #1e2022;
+  }
+  to {
+    background: #ff6776;
+  }
+}
+
+@keyframes fade {
+  from {
+    background: #1e2022;
+  }
+  to {
+    background: #ff6776;
+  }
+}
+@-webkit-keyframes fadeThird {
+  from {
+    background: #fff;
+  }
+  to {
+    background: #1e2022;
+  }
+}
+@keyframes fadeThird {
+  from {
+    background: #fff;
+  }
+  to {
+    background: #1e2022;
+  }
+}
+@-webkit-keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+  }
+  0% {
+            transform: scale3d(.3, .3, .3);
+    opacity: 0;
+
+    -webkit-transform: scale3d(.3, .3, .3);
+  }
+  20% {
+            transform: scale3d(1.1, 1.1, 1.1);
+
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+            transform: scale3d(.9, .9, .9);
+
+    -webkit-transform: scale3d(.9, .9, .9);
+  }
+  60% {
+            transform: scale3d(1.03, 1.03, 1.03);
+    opacity: 1;
+
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+            transform: scale3d(.97, .97, .97);
+
+    -webkit-transform: scale3d(.97, .97, .97);
+  }
+  to {
+            transform: scale3d(1, 1, 1);
+    opacity: 1;
+
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+  }
+  0% {
+            transform: scale3d(.3, .3, .3);
+    opacity: 0;
+
+    -webkit-transform: scale3d(.3, .3, .3);
+  }
+  20% {
+            transform: scale3d(1.1, 1.1, 1.1);
+
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+            transform: scale3d(.9, .9, .9);
+
+    -webkit-transform: scale3d(.9, .9, .9);
+  }
+  60% {
+            transform: scale3d(1.03, 1.03, 1.03);
+    opacity: 1;
+
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+            transform: scale3d(.97, .97, .97);
+
+    -webkit-transform: scale3d(.97, .97, .97);
+  }
+  to {
+            transform: scale3d(1, 1, 1);
+    opacity: 1;
+
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes bounce {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+  }
+  20% {
+            transform: scale3d(1.1, 1.1, 1.1);
+
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+            transform: scale3d(.9, .9, .9);
+
+    -webkit-transform: scale3d(.9, .9, .9);
+  }
+  60% {
+            transform: scale3d(1.03, 1.03, 1.03);
+
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+            transform: scale3d(.97, .97, .97);
+
+    -webkit-transform: scale3d(.97, .97, .97);
+  }
+  to {
+            transform: scale3d(1, 1, 1);
+    opacity: 1;
+
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes bounce {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+            animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+
+    -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+  }
+  20% {
+            transform: scale3d(1.1, 1.1, 1.1);
+
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40% {
+            transform: scale3d(.9, .9, .9);
+
+    -webkit-transform: scale3d(.9, .9, .9);
+  }
+  60% {
+            transform: scale3d(1.03, 1.03, 1.03);
+
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+  }
+  80% {
+            transform: scale3d(.97, .97, .97);
+
+    -webkit-transform: scale3d(.97, .97, .97);
+  }
+  to {
+            transform: scale3d(1, 1, 1);
+    opacity: 1;
+
+    -webkit-transform: scale3d(1, 1, 1);
+  }
+}
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+          transform: translateX(10px);
+  opacity: 0;
+
+  -webkit-transform: translateX(10px);
+}
+
+*:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 500px) {
+  #app {
+            transform: scale(.8) translateY(-50px);
+
+    -webkit-transform: scale(.8) translateY(-50px);
+  }
+}
+*::-moz-selection {
+  color: #fff;
+  background: #ff6776;
+}
+*::selection {
+  color: #fff;
+  background: #ff6776;
+}
+
+[v-cloak] {
+  display: none;
+}
